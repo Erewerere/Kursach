@@ -10,11 +10,18 @@ using System.Windows.Forms;
 
 namespace Coursach
 {
-    public partial class Form1 : Form
+    public partial class Theme : Form
     {
-        public Form1()
+       
+        public Theme()
         {
             InitializeComponent();
         }
+
+
+        
+
+
+
     }
-}
+    }

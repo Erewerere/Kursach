@@ -1,0 +1,5 @@
+F:\Pavel\1AKursach\Coursach\Coursach\obj\Release\Coursach.Main.resources
+F:\Pavel\1AKursach\Coursach\Coursach\obj\Release\Coursach.Properties.Resources.resources
+F:\Pavel\1AKursach\Coursach\Coursach\obj\Release\Coursach.TestForm.resources
+F:\Pavel\1AKursach\Coursach\Coursach\obj\Release\Coursach.csproj.GenerateResource.cache
+F:\Pavel\1AKursach\Coursach\Coursach\obj\Release\Coursach.csproj.CoreCompileInputs.cache
