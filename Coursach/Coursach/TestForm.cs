@@ -12,21 +12,32 @@ using MySql.Data.MySqlClient;
 
 namespace Coursach{       
     public partial class TestForm : Form
-    {   int _pageNum = 0;
+    { int _pageNum = 0;
           int _correct;
+        int [] _checked = new int [Program.AmountOfQuestion];
         QuestionData Question = new QuestionData();
         protected System.Data.DataTable TestDataTable;
         protected System.String cmd = "SELECT * FROM testdata";
         const string DB_CONN_STR = "Server=127.0.0.1;Uid=root;Pwd=;Database=kursach";
       
+        public void CheckBox_Cliked(object sender, EventArgs e)
+        {  
+            var button = this.Controls.OfType<RadioButton>().FirstOrDefault(n => n.Checked);
+            _checked[_pageNum] = Convert.ToInt32(button.Text.ToCharArray()[0]);
+            if (_checked[_pageNum] == _correct)
+            {
+                label1.Text = "Yeehoo";
+            }
+        }
         public void ShowPage(int pageNum)
         {
             textBox1.Text = Question.question[pageNum];
-            radioButton1.Text = Question.variant[0][pageNum];
-            radioButton2.Text = Question.variant[1][pageNum];
-            radioButton3.Text = Question.variant[2][pageNum];
-            radioButton4.Text = Question.variant[3][pageNum];
+            radioButton1.Text = "1." + Question.variant[0][pageNum];
+            radioButton2.Text = "2." + Question.variant[1][pageNum];
+            radioButton3.Text = "3." + Question.variant[2][pageNum];
+            radioButton4.Text = "4." + Question.variant[3][pageNum];
             _correct = Question.correct[pageNum];
+           
             //for (int i = 0; i < 2; i++)
             //{
             //    textBox1.Text += question[i];
