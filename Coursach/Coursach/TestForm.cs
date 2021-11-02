@@ -14,23 +14,131 @@ namespace Coursach{
     public partial class TestForm : Form
     { int _pageNum = 0;
           int _correct;
-        int [] _checked = new int [Program.AmountOfQuestion];
+        static int _amount = Program.AmountOfQuestion;      
+        int [] _points = new int[_amount];
+
+        //показывает, какой вариант выбран. от 1 до 4
+        static int [] _checked = new int [_amount];
+
+        public int total = 0;
+        public double percent = 0.0;
         QuestionData Question = new QuestionData();
         protected System.Data.DataTable TestDataTable;
-        protected System.String cmd = "SELECT * FROM testdata";
-        const string DB_CONN_STR = "Server=127.0.0.1;Uid=root;Pwd=;Database=kursach";
-      
+        protected System.Data.DataSet TestDataSet;
+
+        MySql.Data.MySqlClient.MySqlConnection connection = Program.connection;
+        
+
+        private void TestForm_Load(object sender, EventArgs e)
+        {
+            groupBox1.Controls.Add(radioButton1);
+            groupBox1.Controls.Add(radioButton2);
+            groupBox1.Controls.Add(radioButton3);
+            groupBox1.Controls.Add(radioButton4);
+            System.String cmd = "SELECT * FROM testdata";
+            try
+            {
+                connection.Open();
+            }
+            catch (Exception) { MessageBox.Show("Неможливо підключитись до бази даних!"); }
+            try
+            {
+                MySqlDataAdapter ad = new MySqlDataAdapter(cmd, connection);
+
+                int theme = Program.ThemeNumber;
+                TestDataTable = new System.Data.DataTable();
+                TestDataSet = new System.Data.DataSet();
+                ad.Fill(TestDataTable);
+                //TestDataTable = TestDataSet.Tables["testdata"];
+                //Sorted DataTable
+                IEnumerable<DataRow> query =
+                from testdata in TestDataTable.AsEnumerable()
+                where testdata.Field<int>("Theme") != 0
+                select testdata;
+                DataTable ViewTable = query.CopyToDataTable<DataRow>();
+                Question.question = ViewTable.AsEnumerable().Select(r => r.Field<string>("Question")).ToArray();
+
+                for (int i = 0; i < 4; i++)
+                {
+                    Question.variant[i] = ViewTable.AsEnumerable().Select(r => r.Field<string>($"Variant{i + 1}")).ToArray();
+                }
+                Question.correct = ViewTable.AsEnumerable().Select(r => r.Field<int>("Correct")).ToArray();
+            }
+            catch (Exception er) { MessageBox.Show($"Проблема завантаження даних: {er.Message}. Джерело: {er.Source}"); }
+            
+           
+
+            ShowPage(0);
+        }
+
+
+        public void UpdateResult() {
+
+        }
+
+        public void ResultToDB()
+        {
+           MySqlCommand com = new MySqlCommand(
+               $"INSERT INTO Results (user, points, percent) VALUES({1},{total},{percent})", connection);
+            com.ExecuteNonQuery();                      
+        }
+
         public void CheckBox_Cliked(object sender, EventArgs e)
         {  
-            var button = this.Controls.OfType<RadioButton>().FirstOrDefault(n => n.Checked);
-            _checked[_pageNum] = Convert.ToInt32(button.Text.ToCharArray()[0]);
+            var button = groupBox1.Controls.OfType<RadioButton>().FirstOrDefault(n => n.Checked);
+            if (button != null)
+            {
+                char a = button.Text.ToCharArray()[0];
+                _checked[_pageNum] = (int)Char.GetNumericValue(a);
+                label1.Text = "a" + a + "checked:" + _checked[_pageNum];
+            }
+
             if (_checked[_pageNum] == _correct)
             {
-                label1.Text = "Yeehoo";
+               
+                _points[_pageNum] = 1;
             }
+            else
+                _points[_pageNum] = 0;
+
+
+
         }
+
         public void ShowPage(int pageNum)
         {
+            if (pageNum > 8)
+            {
+                NextButton.Enabled = false;
+                EndTestButton.Visible = true;
+                PreviousButton.Enabled = true;
+            }
+            else if (pageNum < 1)
+            {
+                NextButton.Enabled = true;
+                EndTestButton.Visible = false;
+                PreviousButton.Enabled = false;
+            }
+            else
+            {
+                NextButton.Enabled = true;
+                EndTestButton.Visible = false;
+                PreviousButton.Enabled = true;
+            }
+
+
+            if (_checked[_pageNum] != 0)
+            {
+                groupBox1.Controls.OfType<RadioButton>().ElementAt(_checked[_pageNum]-1).Checked = true;
+            }
+            else {
+                var button = groupBox1.Controls.OfType<RadioButton>().FirstOrDefault(n => n.Checked);
+                if (button != null)
+                    groupBox1.Controls.OfType<RadioButton>().FirstOrDefault(n => n.Checked).Checked = false;
+            }
+
+
+          
             textBox1.Text = Question.question[pageNum];
             radioButton1.Text = "1." + Question.variant[0][pageNum];
             radioButton2.Text = "2." + Question.variant[1][pageNum];
@@ -38,48 +146,25 @@ namespace Coursach{
             radioButton4.Text = "4." + Question.variant[3][pageNum];
             _correct = Question.correct[pageNum];
            
-            //for (int i = 0; i < 2; i++)
-            //{
-            //    textBox1.Text += question[i];
-            //}
+            
 
         }
+
+        public void CalculateResult()
+        {
+            total = _points.Sum();
+            percent = total *100.0/ _amount;
+           
+        }
+
+        
+
         public TestForm()
         {
             InitializeComponent();
         }
 
-        private void TestForm_Load(object sender, EventArgs e)
-        {
-            MySql.Data.MySqlClient.MySqlConnection connection = new MySqlConnection(DB_CONN_STR);
-            connection.Open();
-            MySqlDataAdapter ad = new MySqlDataAdapter(cmd, connection);
-
-
-            TestDataTable = new System.Data.DataTable();
-            ad.Fill(TestDataTable);
-
-            //Sorted DataTable
-            IEnumerable<DataRow> query =
-            from testdata in TestDataTable.AsEnumerable()
-            where testdata.Field<int>("Id") > 1
-            select testdata;
-            DataTable ViewTable = query.CopyToDataTable<DataRow>();
-
-
-
-            Question.question = ViewTable.AsEnumerable().Select(r => r.Field<string>("Question")).ToArray();
-
-            for (int i = 0; i < 4; i++) {
-                Question.variant[i] = ViewTable.AsEnumerable().Select(r => r.Field<string>($"Variant{i+1}")).ToArray();
-            }
-            Question.correct = ViewTable.AsEnumerable().Select(r => r.Field<int>("Correct")).ToArray();
-
-            ShowPage(0);
-           
-
-
-        }       
+             
 
         private void PreviousButton_Click(object sender, EventArgs e)
         {if (_pageNum < 1)
@@ -90,11 +175,23 @@ namespace Coursach{
         }
 
         private void NextButton_Click(object sender, EventArgs e)
-        { if (_pageNum > 8)
+        {
+            if (_pageNum > 8)
                 return;
-        else
-            _pageNum++;
-            ShowPage(_pageNum);
+            else
+                _pageNum++;
+                ShowPage(_pageNum);
+        }
+
+
+        private void EndTestButton_Click(object sender, EventArgs e)
+        {
+            CalculateResult();
+            ResultToDB();
+            connection.Close();
+
+            Result result = new Result(total, percent);
+            this.Close();
         }
     }
 

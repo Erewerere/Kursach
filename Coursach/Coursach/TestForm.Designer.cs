@@ -38,6 +38,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.label1 = new System.Windows.Forms.Label();
+            this.EndTestButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -134,6 +135,16 @@
             this.label1.TabIndex = 11;
             this.label1.Text = "label1";
             // 
+            // EndTestButton
+            // 
+            this.EndTestButton.Location = new System.Drawing.Point(241, 359);
+            this.EndTestButton.Name = "EndTestButton";
+            this.EndTestButton.Size = new System.Drawing.Size(120, 42);
+            this.EndTestButton.TabIndex = 3;
+            this.EndTestButton.Text = "Завершити тестування";
+            this.EndTestButton.UseVisualStyleBackColor = true;
+            this.EndTestButton.Click += new System.EventHandler(this.EndTestButton_Click);
+            // 
             // TestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -142,6 +153,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.EndTestButton);
             this.Controls.Add(this.NextButton);
             this.Controls.Add(this.PreviousButton);
             this.Name = "TestForm";
@@ -166,5 +178,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button EndTestButton;
     }
 }

@@ -21,3 +21,5 @@ F:\Pavel\1AKursach\Coursach\Coursach\bin\Debug\MySql.Data.xml
 F:\Pavel\1AKursach\Coursach\Coursach\obj\Debug\Coursach.csproj.CopyComplete
 F:\Pavel\1AKursach\Coursach\Coursach\obj\Debug\Coursach.exe
 F:\Pavel\1AKursach\Coursach\Coursach\obj\Debug\Coursach.pdb
+F:\Pavel\1AKursach\Coursach\Coursach\obj\Debug\Coursach.Enter.resources
+F:\Pavel\1AKursach\Coursach\Coursach\obj\Debug\Coursach.Result.resources

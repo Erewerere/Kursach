@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using MySql.Data;
+using MySql.Data.MySqlClient;
 namespace Coursach
 {
     public class QuestionData
@@ -14,6 +15,13 @@ namespace Coursach
          new string[Program.AmountOfQuestion],  new string[Program.AmountOfQuestion], new string[Program.AmountOfQuestion]};      
         public int[] correct = new int[Program.AmountOfQuestion];
     }
+    public static class User
+    {  static int id ;
+       static string fio;
+        static string password;
+    }
+
+
     static class Program
     {
         /// <summary>
@@ -26,9 +34,11 @@ namespace Coursach
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Main());
         }
+        static public string DB_CONN_STR = "Server=127.0.0.1;Uid=root;Pwd=;Database=kursach";
+        static public  MySql.Data.MySqlClient.MySqlConnection connection = new MySqlConnection(DB_CONN_STR);
         static public int AmountOfQuestion { get; private set ; } = 10;
         static int number = 5;
-        static  int themenumber = 0;
+        static  int themenumber = 1;
         //возвращает количество тем в самой программе
         static public int AmountOfTheme { get => number;  /*set => number = value;*/ }
         //дает номер темы, которая выбрана в main
@@ -36,7 +46,7 @@ namespace Coursach
         {
             set
             {
-                if (value < 1 || value > number)
+                if (value < 1 || value > AmountOfTheme)
                 {
                     Console.WriteLine("Wrong numbertheme was send");
                     return;
