@@ -16,11 +16,19 @@ namespace Coursach
         public int[] correct = new int[Program.AmountOfQuestion];
     }
     public static class User
-    {  static int id ;
-       static string fio;
-        static string password;
+    {  public static int id { get; set; }
+        public static string fio { get; set; }
+      
+        public static int group { get; set; }           
     }
 
+    public class Group
+    {
+        int id;
+        string name;
+        public int Id { set { if (value > 0) id = value; } get { return id; } }
+        public string Name { get; set; }
+    }
 
     static class Program
     {
@@ -32,7 +40,7 @@ namespace Coursach
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Main());
+            Application.Run(new Enter());
         }
         static public string DB_CONN_STR = "Server=127.0.0.1;Uid=root;Pwd=;Database=kursach";
         static public  MySql.Data.MySqlClient.MySqlConnection connection = new MySqlConnection(DB_CONN_STR);

@@ -17,12 +17,17 @@ namespace Coursach
         QuestionData Question = new QuestionData();
         protected System.Data.DataTable TestDataTable;
         protected System.Data.DataSet TestDataSet;
+        List<string> fio = new List<string>();
+        List<string> password = new List<string>();
+        string password1;
+        string fio1;
+        DataTable ViewTable;
 
         MySql.Data.MySqlClient.MySqlConnection connection = Program.connection;
 
-        private void TestForm_Load(object sender, EventArgs e)
+        private void Enter_Load(object sender, EventArgs e)
         {
-            System.String cmd = "SELECT * FROM testdata";
+            System.String cmd = "SELECT * FROM users";
             try
             {
                 connection.Open();
@@ -32,24 +37,11 @@ namespace Coursach
             {
                 MySqlDataAdapter ad = new MySqlDataAdapter(cmd, connection);
 
-                int theme = Program.ThemeNumber;
+                
                 TestDataTable = new System.Data.DataTable();
-                TestDataSet = new System.Data.DataSet();
+              
                 ad.Fill(TestDataTable);
-                //TestDataTable = TestDataSet.Tables["testdata"];
-                //Sorted DataTable
-                IEnumerable<DataRow> query =
-                from testdata in TestDataTable.AsEnumerable()
-                where testdata.Field<int>("Theme") != 0
-                select testdata;
-                DataTable ViewTable = query.CopyToDataTable<DataRow>();
-                Question.question = ViewTable.AsEnumerable().Select(r => r.Field<string>("Question")).ToArray();
-
-                for (int i = 0; i < 4; i++)
-                {
-                    Question.variant[i] = ViewTable.AsEnumerable().Select(r => r.Field<string>($"Variant{i + 1}")).ToArray();
-                }
-                Question.correct = ViewTable.AsEnumerable().Select(r => r.Field<int>("Correct")).ToArray();
+                
             }
             catch (Exception er) { MessageBox.Show($"Проблема завантаження даних: {er.Message}. Джерело: {er.Source}"); }
             
@@ -64,7 +56,38 @@ namespace Coursach
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Registration reg = new Registration();
+            reg.Show();
 
+        }
+
+        private bool check()
+        {
+          
+
+            foreach( DataRow d in TestDataTable.AsEnumerable())
+            {              
+                if (d.Field<string>("FIO") == fio1)
+                {
+                    User.fio = d.Field<string>("Fio");
+                    User.id = d.Field<int>("Id");
+                    return true;
+                }
+                
+            }         
+            return false;
+      
+        }
+
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            password1 = textBox1.Text;
+            fio1 = textBox2.Text;
+           if(check()==true)
+            {               
+              this.Close();
+            }
         }
     }
 }

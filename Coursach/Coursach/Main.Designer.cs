@@ -30,11 +30,11 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.навчанняToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.аккаунтToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.довідкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.пройтиМатеріалToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.тестуванняToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.аккаунтToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.вихідToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.довідкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,22 +59,6 @@
             this.навчанняToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
             this.навчанняToolStripMenuItem.Text = "Навчання";
             // 
-            // аккаунтToolStripMenuItem
-            // 
-            this.аккаунтToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.вихідToolStripMenuItem});
-            this.аккаунтToolStripMenuItem.Name = "аккаунтToolStripMenuItem";
-            this.аккаунтToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
-            this.аккаунтToolStripMenuItem.Text = "Аккаунт";
-            this.аккаунтToolStripMenuItem.Click += new System.EventHandler(this.аккаунтToolStripMenuItem_Click);
-            // 
-            // довідкаToolStripMenuItem
-            // 
-            this.довідкаToolStripMenuItem.Name = "довідкаToolStripMenuItem";
-            this.довідкаToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-            this.довідкаToolStripMenuItem.Text = "Довідка";
-            this.довідкаToolStripMenuItem.Click += new System.EventHandler(this.довідкаToolStripMenuItem_Click);
-            // 
             // пройтиМатеріалToolStripMenuItem
             // 
             this.пройтиМатеріалToolStripMenuItem.Name = "пройтиМатеріалToolStripMenuItem";
@@ -88,11 +72,27 @@
             this.тестуванняToolStripMenuItem.Text = "Тестування";
             this.тестуванняToolStripMenuItem.Click += new System.EventHandler(this.тестуванняToolStripMenuItem_Click);
             // 
+            // аккаунтToolStripMenuItem
+            // 
+            this.аккаунтToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.вихідToolStripMenuItem});
+            this.аккаунтToolStripMenuItem.Name = "аккаунтToolStripMenuItem";
+            this.аккаунтToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
+            this.аккаунтToolStripMenuItem.Text = "Аккаунт";
+            this.аккаунтToolStripMenuItem.Click += new System.EventHandler(this.аккаунтToolStripMenuItem_Click);
+            // 
             // вихідToolStripMenuItem
             // 
             this.вихідToolStripMenuItem.Name = "вихідToolStripMenuItem";
             this.вихідToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.вихідToolStripMenuItem.Text = "Вихід";
+            // 
+            // довідкаToolStripMenuItem
+            // 
+            this.довідкаToolStripMenuItem.Name = "довідкаToolStripMenuItem";
+            this.довідкаToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.довідкаToolStripMenuItem.Text = "Довідка";
+            this.довідкаToolStripMenuItem.Click += new System.EventHandler(this.довідкаToolStripMenuItem_Click);
             // 
             // Main
             // 
