@@ -85,8 +85,10 @@ namespace Coursach
             password1 = textBox1.Text;
             fio1 = textBox2.Text;
            if(check()==true)
-            {               
-              this.Close();
+            {
+                Formi.Main.Show();
+                new Main().Show();
+              
             }
         }
     }

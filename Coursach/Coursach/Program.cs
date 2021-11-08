@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data;
 using MySql.Data.MySqlClient;
+
+
 namespace Coursach
 {
     public class QuestionData
@@ -29,7 +31,15 @@ namespace Coursach
         public int Id { set { if (value > 0) id = value; } get { return id; } }
         public string Name { get; set; }
     }
-
+    public static class Formi
+    {
+        public static TestForm Test;
+        
+        public static Main Main = new Main();
+        public static Registration Reg = new Registration();
+        public static Result Result = new Result();
+        public static Theme Theme  = new Theme();
+    }
     static class Program
     {
         /// <summary>
@@ -42,6 +52,9 @@ namespace Coursach
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Enter());
         }
+
+      
+
         static public string DB_CONN_STR = "Server=127.0.0.1;Uid=root;Pwd=;Database=kursach";
         static public  MySql.Data.MySqlClient.MySqlConnection connection = new MySqlConnection(DB_CONN_STR);
         static public int AmountOfQuestion { get; private set ; } = 10;

@@ -191,6 +191,7 @@ namespace Coursach{
             connection.Close();
 
             Result result = new Result(total, percent);
+            
             this.Close();
         }
     }

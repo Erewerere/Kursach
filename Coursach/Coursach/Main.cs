@@ -38,10 +38,17 @@ namespace Coursach
 
         private void тестуванняToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TestForm Test = new TestForm();
-            Test.Show();
+
+            Formi.Test.Show();
+
+            this.Hide();
             Program.ThemeNumber = 1;
           
+        }
+
+        private void пройтиМатеріалToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

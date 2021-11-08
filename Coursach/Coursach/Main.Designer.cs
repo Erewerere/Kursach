@@ -35,6 +35,7 @@
             this.аккаунтToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.вихідToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.довідкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.проПрограмуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,6 +65,7 @@
             this.пройтиМатеріалToolStripMenuItem.Name = "пройтиМатеріалToolStripMenuItem";
             this.пройтиМатеріалToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.пройтиМатеріалToolStripMenuItem.Text = "Пройти матеріал";
+            this.пройтиМатеріалToolStripMenuItem.Click += new System.EventHandler(this.пройтиМатеріалToolStripMenuItem_Click);
             // 
             // тестуванняToolStripMenuItem
             // 
@@ -89,10 +91,18 @@
             // 
             // довідкаToolStripMenuItem
             // 
+            this.довідкаToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.проПрограмуToolStripMenuItem});
             this.довідкаToolStripMenuItem.Name = "довідкаToolStripMenuItem";
             this.довідкаToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.довідкаToolStripMenuItem.Text = "Довідка";
             this.довідкаToolStripMenuItem.Click += new System.EventHandler(this.довідкаToolStripMenuItem_Click);
+            // 
+            // проПрограмуToolStripMenuItem
+            // 
+            this.проПрограмуToolStripMenuItem.Name = "проПрограмуToolStripMenuItem";
+            this.проПрограмуToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.проПрограмуToolStripMenuItem.Text = "Про програму";
             // 
             // Main
             // 
@@ -120,6 +130,7 @@
         private System.Windows.Forms.ToolStripMenuItem аккаунтToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem вихідToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem довідкаToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem проПрограмуToolStripMenuItem;
     }
 }
 
