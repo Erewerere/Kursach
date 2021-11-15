@@ -28,10 +28,7 @@ namespace Coursach{
 
         MySql.Data.MySqlClient.MySqlConnection connection = Program.connection;
 
-        private static bool FindPoints(DataRow obj)
-        {
-            return obj.X * obj.Y > 100000;
-        }
+       
 
         private void TestForm_Load(object sender, EventArgs e)
         {
@@ -53,21 +50,19 @@ namespace Coursach{
                 TestDataTable = new System.Data.DataTable();
                 TestDataSet = new System.Data.DataSet();
                 ad.Fill(TestDataTable);
-                TestDataTable.AsEnumerable().Where(x=> )
-                int[] indexes = TestDataTable.AsEnumerable().Select(r => r.Field<int>("Id")).ToArray();
-                //Sorted DataTable
-                IEnumerable<DataRow> query = 
-                from testdata in TestDataTable.AsEnumerable()
-                where testdata.Field<int>("Id") in indexes
-                select testdata;
-                DataTable ViewTable = query.CopyToDataTable<DataRow>();
-                Question.question = ViewTable.AsEnumerable().Select(r => r.Field<string>("Question")).ToArray();
+
+                int[] indexes = { 1, 2, 3 };
+                TestDataTable.AsEnumerable().Where( x => Array.Exists(indexes, element => element == x.Field<int>("Id") ) );
+                
+                //Sorted DataTable              
+            
+                Question.question = TestDataTable.AsEnumerable().Select(r => r.Field<string>("Question")).ToArray();
                 //Question.question = Question.question.OrderBy(n => Guid.NewGuid()).Take(5);
                 for (int i = 0; i < 4; i++)
                 {
-                    Question.variant[i] = ViewTable.AsEnumerable().Select(r => r.Field<string>($"Variant{i + 1}")).ToArray();
+                    Question.variant[i] = TestDataTable.AsEnumerable().Select(r => r.Field<string>($"Variant{i + 1}")).ToArray();
                 }
-                Question.correct = ViewTable.AsEnumerable().Select(r => r.Field<int>("Correct")).ToArray();
+                Question.correct = TestDataTable.AsEnumerable().Select(r => r.Field<int>("Correct")).ToArray();
             }
             catch (Exception er) { MessageBox.Show($"Проблема завантаження даних: {er.Message}. Джерело: {er.Source}"); }
             
