@@ -27,7 +27,11 @@ namespace Coursach{
         protected System.Data.DataSet TestDataSet;
 
         MySql.Data.MySqlClient.MySqlConnection connection = Program.connection;
-        
+
+        private static bool FindPoints(DataRow obj)
+        {
+            return obj.X * obj.Y > 100000;
+        }
 
         private void TestForm_Load(object sender, EventArgs e)
         {
@@ -35,7 +39,7 @@ namespace Coursach{
             groupBox1.Controls.Add(radioButton2);
             groupBox1.Controls.Add(radioButton3);
             groupBox1.Controls.Add(radioButton4);
-            System.String cmd = "SELECT * FROM testdata";
+            System.String cmd = $"SELECT * FROM testdata where Theme ={Program.ThemeNumber}";
             try
             {
                 connection.Open();
@@ -49,15 +53,16 @@ namespace Coursach{
                 TestDataTable = new System.Data.DataTable();
                 TestDataSet = new System.Data.DataSet();
                 ad.Fill(TestDataTable);
-                //TestDataTable = TestDataSet.Tables["testdata"];
+                TestDataTable.AsEnumerable().Where(x=> )
+                int[] indexes = TestDataTable.AsEnumerable().Select(r => r.Field<int>("Id")).ToArray();
                 //Sorted DataTable
-                IEnumerable<DataRow> query =
+                IEnumerable<DataRow> query = 
                 from testdata in TestDataTable.AsEnumerable()
-                where testdata.Field<int>("Theme") != 0
+                where testdata.Field<int>("Id") in indexes
                 select testdata;
                 DataTable ViewTable = query.CopyToDataTable<DataRow>();
                 Question.question = ViewTable.AsEnumerable().Select(r => r.Field<string>("Question")).ToArray();
-
+                //Question.question = Question.question.OrderBy(n => Guid.NewGuid()).Take(5);
                 for (int i = 0; i < 4; i++)
                 {
                     Question.variant[i] = ViewTable.AsEnumerable().Select(r => r.Field<string>($"Variant{i + 1}")).ToArray();

@@ -31,15 +31,15 @@ namespace Coursach
         public int Id { set { if (value > 0) id = value; } get { return id; } }
         public string Name { get; set; }
     }
-    public static class Formi
-    {
-        public static TestForm Test;
+    //public static class Formi
+    //{
+    //    public static TestForm Test;
         
-        public static Main Main = new Main();
-        public static Registration Reg = new Registration();
-        public static Result Result = new Result();
-        public static Theme Theme  = new Theme();
-    }
+    //    public static Main Main = new Main();
+    //    public static Registration Reg = new Registration();
+    //    public static Result Result = new Result();
+    //    public static Theme Theme  = new Theme();
+    //}
     static class Program
     {
         /// <summary>
@@ -50,7 +50,7 @@ namespace Coursach
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Enter());
+            Application.Run(new TestForm());
         }
 
       
@@ -69,7 +69,7 @@ namespace Coursach
             {
                 if (value < 1 || value > AmountOfTheme)
                 {
-                    Console.WriteLine("Wrong numbertheme was send");
+                    MessageBox.Show($"The number of theme is out of range!. Mininimun index is 1 and maximum is {Program.AmountOfTheme}");
                     return;
                 }
                 else

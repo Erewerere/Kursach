@@ -86,7 +86,7 @@ namespace Coursach
             fio1 = textBox2.Text;
            if(check()==true)
             {
-                Formi.Main.Show();
+                
                 new Main().Show();
               
             }
