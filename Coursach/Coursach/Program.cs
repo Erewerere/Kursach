@@ -50,14 +50,12 @@ namespace Coursach
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Design());
-            //Application.Run(new Enter());
+            Application.Run(new Enter());
         }
-
 
       
 
-        static public string DB_CONN_STR = "Server=127.0.0.1;Uid=root;Pwd=Password12;Database=kursach";
+        static public string DB_CONN_STR = "Server=127.0.0.1;Uid=root;Pwd=;Database=kursach";
         static public  MySql.Data.MySqlClient.MySqlConnection connection = new MySqlConnection(DB_CONN_STR);
         static public int AmountOfQuestion { get; private set ; } = 10;
         static int number = 5;
