@@ -33,9 +33,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="MySql.Data, Version=8.0.26.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -59,12 +56,6 @@
     </Compile>
     <Compile Include="Enter.Designer.cs">
       <DependentUpon>Enter.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Design.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Design.Designer.cs">
-      <DependentUpon>Design.cs</DependentUpon>
     </Compile>
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
@@ -98,9 +89,6 @@
     <Compile Include="Theme.Designer.cs">
       <DependentUpon>Theme.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Design.resx">
-      <DependentUpon>Design.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Enter.resx">
       <DependentUpon>Enter.cs</DependentUpon>
     </EmbeddedResource>
