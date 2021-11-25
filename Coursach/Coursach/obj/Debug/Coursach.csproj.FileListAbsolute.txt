@@ -24,4 +24,3 @@ F:\Pavel\1AKursach\Coursach\Coursach\obj\Debug\Coursach.pdb
 F:\Pavel\1AKursach\Coursach\Coursach\obj\Debug\Coursach.Enter.resources
 F:\Pavel\1AKursach\Coursach\Coursach\obj\Debug\Coursach.Result.resources
 F:\Pavel\1AKursach\Coursach\Coursach\obj\Debug\Coursach.Registration.resources
-F:\Pavel\1AKursach\Coursach\Coursach\obj\Debug\Coursach.Theme.resources

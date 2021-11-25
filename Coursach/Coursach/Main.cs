@@ -39,7 +39,7 @@ namespace Coursach
         private void тестуванняToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            
+            Formi.Test.Show();
 
             this.Hide();
             Program.ThemeNumber = 1;
@@ -49,11 +49,6 @@ namespace Coursach
         private void пройтиМатеріалToolStripMenuItem_Click(object sender, EventArgs e)
         {
             
-        }
-
-        private void першаТемаToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
